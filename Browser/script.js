@@ -29,11 +29,13 @@ let secondCard = null;
 let lockBoard = false;
 let errorCount = 0;
 let matchedPairs = 0;
+let score = 0; // Nuova variabile punteggio
 
 // Selezione degli elementi HTML principali
 
 const board = document.getElementById('game-board');
 const errorCounter = document.getElementById('error-counter');
+const scoreCounter = document.getElementById('score-counter'); // Nuovo elemento
 const victoryMessage = document.getElementById('victory-message');
 
 // Mappa simboli -> suoni (assicurati che i file audio esistano nella cartella 'sounds')
@@ -56,6 +58,8 @@ for (const [symbol, soundPath] of Object.entries(symbolSounds)) {
 
 // Suono di vittoria
 const victoryAudio = new Audio('sounds/mariovictory.mp3');
+// Suono di errore
+const errorAudio = new Audio('sounds/error.mp3');
 
 // Funzione che crea il tabellone di gioco
 
@@ -105,6 +109,10 @@ function onCardClick(e) {
         secondCard.classList.add('matched');
         matchedPairs++;
 
+        // Aggiorna punteggio per coppia trovata
+        score += 10;
+        updateScore();
+
         // Riproduci il suono associato al simbolo della coppia trovata
         const symbol = firstCard.dataset.symbol;
         if (audioObjects[symbol]) {
@@ -117,12 +125,13 @@ function onCardClick(e) {
 
         // Se tutte le coppie sono state trovate, mostra il messaggio di vittoria
         if (matchedPairs === symbols.length) {
-            victoryMessage.style.display = 'block';
-            // Riproduci il suono di vittoria dopo un ritardo di 3 secondi
+
             setTimeout(() => {
+                victoryMessage.style.display = 'block';
+                // Riproduci il suono di vittoria dopo un ritardo di 2 secondi
                 victoryAudio.currentTime = 0;
                 victoryAudio.play();
-            }, 3000);
+            }, 2000);
         }
 
     } else {
@@ -131,9 +140,16 @@ function onCardClick(e) {
 
         errorCount++;
         errorCounter.textContent = `Errori: ${errorCount}`;
+        // Aggiorna punteggio per errore
+        score -= 1;
+        updateScore();
+
         setTimeout(() => {
             firstCard.classList.remove('flipped');
             secondCard.classList.remove('flipped');
+            // Riproduci il suono di errore
+            errorAudio.currentTime = 0;
+            errorAudio.play();
             resetTurn();
         }, 1000);
     }
@@ -151,9 +167,20 @@ function resetTurn() {
 function initGame() {
     errorCount = 0;
     matchedPairs = 0;
+    // Recupera il punteggio da localStorage, se presente
+    const savedScore = localStorage.getItem('memoryGameScore');
+    score = savedScore !== null ? parseInt(savedScore, 10) : 0;
     errorCounter.textContent = 'Errori: 0';
+    updateScore(); // Aggiorna visualizzazione punteggio
     victoryMessage.style.display = 'none';
     createBoard();
+}
+
+// Funzione per aggiornare il punteggio visualizzato e salvarlo su localStorage
+
+function updateScore() {
+    scoreCounter.textContent = `Punteggio: ${score}`;
+    localStorage.setItem('memoryGameScore', score);
 }
 
 // Avvia il gioco al caricamento della pagina
