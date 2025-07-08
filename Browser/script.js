@@ -118,9 +118,11 @@ function onCardClick(e) {
         // Se tutte le coppie sono state trovate, mostra il messaggio di vittoria
         if (matchedPairs === symbols.length) {
             victoryMessage.style.display = 'block';
-            // Riproduci il suono di vittoria
-            victoryAudio.currentTime = 0;
-            victoryAudio.play();
+            // Riproduci il suono di vittoria dopo un ritardo di 3 secondi
+            setTimeout(() => {
+                victoryAudio.currentTime = 0;
+                victoryAudio.play();
+            }, 3000);
         }
 
     } else {
