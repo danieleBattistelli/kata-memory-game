@@ -36,6 +36,24 @@ const board = document.getElementById('game-board');
 const errorCounter = document.getElementById('error-counter');
 const victoryMessage = document.getElementById('victory-message');
 
+// Mappa simboli -> suoni (assicurati che i file audio esistano nella cartella 'sounds')
+const symbolSounds = {
+    'img/mario.jpg': 'sounds/mario.mp3',
+    'img/luigi.jpg': 'sounds/luigi.mp3',
+    'img/peach.png': 'sounds/peach.mp3',
+    'img/bowser.png': 'sounds/bowser.mp3',
+    'img/yoshi.png': 'sounds/yoshi.mp3',
+    'img/donkeykong.jpg': 'sounds/donkeykong.mp3',
+    'img/link.png': 'sounds/link.mp3',
+    'img/kirby.jpg': 'sounds/kirby.mp3'
+};
+
+// Precarica i suoni in oggetti Audio
+const audioObjects = {};
+for (const [symbol, soundPath] of Object.entries(symbolSounds)) {
+    audioObjects[symbol] = new Audio(soundPath);
+}
+
 // Funzione che crea il tabellone di gioco
 
 function createBoard() {
@@ -47,9 +65,10 @@ function createBoard() {
         card.dataset.symbol = symbol;
         card.dataset.index = idx;
 
-        // Usa un'immagine invece di una emoji
+        //Inserimento del contenuto della carta
         card.innerHTML = `
-            <div class="front"><img src="${symbol}" alt="personaggio" style="width:60px;height:60px;"></div>
+            <div class="front">
+            <img src="${symbol}" alt="personaggio" style="width:60px;height:60px;"></div>
             <div class="back">?</div>
         `;
 
@@ -82,6 +101,15 @@ function onCardClick(e) {
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
         matchedPairs++;
+
+        // Riproduci il suono associato al simbolo della coppia trovata
+        const symbol = firstCard.dataset.symbol;
+        if (audioObjects[symbol]) {
+            // Riavvia il suono se già in riproduzione
+            audioObjects[symbol].currentTime = 0;
+            audioObjects[symbol].play();
+        }
+
         resetTurn();
 
         // Se tutte le coppie sono state trovate, mostra il messaggio di vittoria
