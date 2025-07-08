@@ -54,6 +54,9 @@ for (const [symbol, soundPath] of Object.entries(symbolSounds)) {
     audioObjects[symbol] = new Audio(soundPath);
 }
 
+// Suono di vittoria
+const victoryAudio = new Audio('sounds/mariovictory.mp3');
+
 // Funzione che crea il tabellone di gioco
 
 function createBoard() {
@@ -113,9 +116,11 @@ function onCardClick(e) {
         resetTurn();
 
         // Se tutte le coppie sono state trovate, mostra il messaggio di vittoria
-
         if (matchedPairs === symbols.length) {
             victoryMessage.style.display = 'block';
+            // Riproduci il suono di vittoria
+            victoryAudio.currentTime = 0;
+            victoryAudio.play();
         }
 
     } else {
