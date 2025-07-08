@@ -1,0 +1,101 @@
+/* Font arcade */
+body {
+    font-family: 'Press Start 2P', cursive, Arial, sans-serif;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+#error-counter {
+    margin: 20px 0 10px 0;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-gap: 16px;
+    justify-content: center;
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+.card {
+    width: 80px;
+    height: 100px;
+    perspective: 600px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.card .front,
+.card .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0008;
+    background: #fff;
+    color: #222;
+    backface-visibility: hidden;
+    transition: transform 0.4s cubic-bezier(.4, 2, .6, 1);
+}
+
+.card .back {
+    background: #e60012;
+    /* Nintendo Red */
+    color: #fff;
+    transform: rotateY(0deg);
+    font-size: 2em;
+    border: 3px solid #fff;
+}
+
+.card .front {
+    background: #fff;
+    color: #222;
+    transform: rotateY(180deg);
+    border: 3px solid #e60012;
+}
+
+.card.flipped .front,
+.card.matched .front {
+    transform: rotateY(0deg);
+}
+
+.card.flipped .back,
+.card.matched .back {
+    transform: rotateY(-180deg);
+}
+
+.card:not(.flipped):not(.matched) .front {
+    transform: rotateY(180deg);
+}
+
+.card:not(.flipped):not(.matched) .back {
+    transform: rotateY(0deg);
+}
+
+#victory-message {
+    display: none;
+    margin-top: 30px;
+    font-size: 1.1em;
+    color: #ffe600;
+    background: #e60012;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #000a;
+    letter-spacing: 2px;
+}
