@@ -1,7 +1,6 @@
 
-<p align="center">
+
   ![Memory Game](img/memory_game.png)
-</p>
 
 
 <h1 align="center">🧠 Memory Game</h1>
