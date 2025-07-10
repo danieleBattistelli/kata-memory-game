@@ -8,7 +8,7 @@ body {
 }
 
 #error-counter {
-    margin: 20px 0 10px 0;
+    margin: 20px 300px 20px 0px;
     font-size: 1.2em;
     letter-spacing: 2px;
 }
@@ -105,11 +105,12 @@ body {
 
 #victory-message.show {
     transform: translate(-50%, -50%) scale(1);
+    z-index: 1;
 }
 
 #score-counter {
-    font-size: 2rem;
-    margin-top: 20px;
+    font-size: 1.2rem;
+    margin: 20px 350px 20px 0px;
     color: #ffd700;
 }
 

@@ -176,7 +176,7 @@ function initGame() {
     score = savedScore !== null ? parseInt(savedScore, 10) : 0;
     errorCounter.textContent = 'Errori: 0';
     updateScore(); // Aggiorna visualizzazione punteggio
-    victoryMessage.style.display = 'none';
+    hideVictoryMessage();
     createBoard();
     renderHighscores(); // Mostra la classifica all'avvio
 }
@@ -203,7 +203,7 @@ function updateHighscores(newScore) {
 }
 
 // Funzione per rendere visibile la classifica dei punteggi
-// Mostra i punteggi salvati in localStorage, riempiendo gli slot vu
+// Mostra i punteggi salvati in localStorage, riempiendo gli slot vuoti con '--'
 function renderHighscores() {
     let highscores = JSON.parse(localStorage.getItem(HIGHSCORES_KEY)) || [];
     highscoresList.innerHTML = '';
@@ -229,12 +229,28 @@ resetScoreBtn.addEventListener('click', () => {
     renderHighscores();
 });
 
+//Funzione reset punteggio
+function resetScore() {
+    score = 0;
+    updateScore();
+    localStorage.removeItem('memoryGameScore');
+    errorCount = 0;
+    errorCounter.textContent = 'Errori: 0';
+    renderHighscores();
+}
+
 // Gestione reset record classifica
 resetHighscoresBtn.addEventListener('click', () => {
     localStorage.removeItem(HIGHSCORES_KEY);
     renderHighscores();
 });
 
-// Avvia il gioco al caricamento della pagina
+//Aggiungi un evento per chiudere il messaggio di vittoria e ripristinare il gioco
+victoryMessage.addEventListener('click', () => {
+    hideVictoryMessage();
+    initGame();
+    resetScore()
+});
 
+// Avvia il gioco al caricamento della pagina
 window.onload = initGame;
