@@ -1,24 +1,20 @@
-# kata-memory-game
 
-Il gioco Memory è un classico passatempo che mette alla prova la memoria visiva dei giocatori. L'obiettivo è trovare tutte le coppie di carte identiche facendo meno errori o nel minor tempo possibile.
+<p align="center">
+  <img src="img/memory_game.png" alt="Memory Game" width="400"/>
+</p>
 
-Sviluppiamo interfaccia e logica di gioco usando solo HTML, CSS e JS.
 
-**Regole del gioco:**
+<h1 align="center">🧠 Memory Game</h1>
 
-- le card di gioco sono mescolate in maniera casuale a ogni caricamento di pagina (ogni gioco in pratica è sempre diverso)
-- a inizio gioco tutte le carte sono coperte
-- clicca su una carta per scoprirla
-- ogni volta che una coppia di carte viene scoperta, controlla se sono uguali:
-    - se lo sono, le carte restano scoperte
-    - se non lo so, le carte tornano a nascondersi
-- c’è un counter per contare gli errori commessi
-- il gioco finisce quando tutte le carte sono state scoperte
+Sfida la tua mente e metti alla prova la tua memoria! Questo gioco Memory è un classico intramontabile reinventato con uno stile moderno e intuitivo. L'obiettivo è semplice: trova tutte le coppie di carte uguali nel minor tempo possibile. Perfetto per tutte le età, stimola la concentrazione, la memoria visiva e la velocità di pensiero.
 
-Rimetti “in gioco” tutto quello che sai sulle basi di HTML, CSS e JS. 
+<p align="center">
+  <b>Sfida la tua mente e metti alla prova la tua memoria! Questo gioco Memory è un classico intramontabile reinventato con uno stile moderno e intuitivo. L'obiettivo è semplice: trova tutte le coppie di carte uguali nel minor tempo possibile. Perfetto per tutte le età, stimola la concentrazione, la memoria visiva e la velocità di pensiero.</b><br>
+  <i>Realizzato con HTML, CSS e JavaScript.<br>
+  Sfida un amico, allena la tua logica e divertiti!</i><br>
+  <u>Il gioco tiene il conteggio del punteggio e lo salva nel local storage!</u>
+</p>
 
-# Suggerimenti
-
-- Ci sono varie tecniche per implementare la logica di gioco; scegli quella che ritieni opportuna purché sia in grado di spiegarla :)
-- Ragiona per stati e dati di gioco (ad es. le card potrebbero essere rappresentate da un array…)
-- Non è necessario che il gioco sia responsive, limitiamoci alla versione desktop
+Il progetto è disponibile in due versioni:
+- **Versione Browser**: si trova nella cartella `Browser` e si avvia aprendo il file `index.html` con il browser.
+- **Versione Plug-in**(in lavorazione): si trova nella cartella `Plug-in` e può essere caricata come plug-in nel browser.
