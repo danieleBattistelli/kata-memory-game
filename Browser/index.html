@@ -10,14 +10,19 @@
 </head>
 
 <body>
-    
+    <button id="reset-score-btn">Reset Score</button>
     <div id="score-counter">Punteggio: 0</div>
     <div id="error-counter">Errori: 0</div>
-    <div id="game-board"></div>
-    <div id="victory-message">Complimenti! Hai completato il gioco!</div>
-
+    <div id="main-container">
+        <div id="game-board"></div>
+        <div id="highscores-container">
+            <button id="reset-highscores-btn">Reset Record</button>
+            <div id="highscores-title">Top 10 Punteggi</div>
+            <ol id="highscores-list"></ol>
+        </div>
+    </div>
+    <div id="victory-message">Complimenti! Hai completato il gioco!Tenta un nuovo record!</div>
     <script src="script.js" defer></script>
-
 </body>
 
 </html>
