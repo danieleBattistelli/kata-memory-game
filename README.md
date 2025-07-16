@@ -18,3 +18,11 @@ Il progetto è disponibile in due versioni:
 - **Versione Browser**: si trova nella cartella `Browser` e si avvia aprendo il file `index.html` con il browser.
 - **Versione Plug-in**(in lavorazione): si trova nella cartella `Plug-in` e può essere caricata come plug-in nel browser.
 ---
+<!-- Da implementare:
+-----Titolo e spiegazione
+-----Supababes gioco in real time
+-----modalità 3 carte uguali
+-----combo cioe' bonus per ogni coppia consecutiva indovinata
+-----timer (sommare secondi rimanenti al punteggio)
+-----icona disattiva audio
+-----easy, medium, hard () -->

@@ -26,18 +26,22 @@ let secondCard = null;
 let lockBoard = false;
 let errorCount = 0;
 let matchedPairs = 0;
-let score = 0; 
+let score = 0;
+
+
+
+const $one = document.querySelector.bind(document);
 
 // Selezione degli elementi HTML principali
-const board = document.getElementById('game-board');
-const errorCounter = document.getElementById('error-counter');
-const scoreCounter = document.getElementById('score-counter'); // Nuovo elemento
-const victoryMessage = document.getElementById('victory-message');
+const board = $one('#game-board');
+const errorCounter = $one('#error-counter');
+const scoreCounter = $one('#score-counter'); // Nuovo elemento
 const resetScoreBtn = document.getElementById('reset-score-btn'); // Nuovo bottone
 const highscoresList = document.getElementById('highscores-list');
 const HIGHSCORES_KEY = 'memoryGameHighscores';
 const MAX_HIGHSCORES = 10;
 const resetHighscoresBtn = document.getElementById('reset-highscores-btn');
+const victoryMessage = document.getElementById('victory-message'); // <--- AGGIUNGI QUESTA RIGA
 
 // Mappa simboli -> suoni (assicurati che i file audio esistano nella cartella 'sounds')
 const symbolSounds = {
@@ -63,7 +67,7 @@ const victoryAudio = new Audio('sounds/mariovictory.mp3');
 const errorAudio = new Audio('sounds/error.mp3');
 
 // Funzione che crea il tabellone di gioco
-function createBoard() {
+function createBoard(showAll = false) {
     shuffle(cards);
     board.innerHTML = '';
     cards.forEach((symbol, idx) => {
@@ -82,6 +86,17 @@ function createBoard() {
         card.addEventListener('click', onCardClick);
         board.appendChild(card);
     });
+
+    // Mostra tutte le card girate se richiesto (all'avvio)
+    if (showAll) {
+        lockBoard = true;
+        const allCards = board.querySelectorAll('.card');
+        allCards.forEach(card => card.classList.add('flipped'));
+        setTimeout(() => {
+            allCards.forEach(card => card.classList.remove('flipped'));
+            lockBoard = false;
+        }, 5000);
+    }
 }
 
 // Funzione che gestisce il click su una carta
@@ -136,7 +151,7 @@ function onCardClick(e) {
         // Se le carte sono diverse, aumenta il contatore errori e gira le carte dopo 1 secondo
         errorCount++;
         errorCounter.textContent = `Errori: ${errorCount}`;
-       
+
         // Aggiorna punteggio per errore
         score -= 1;
         updateScore();
@@ -177,7 +192,7 @@ function initGame() {
     errorCounter.textContent = 'Errori: 0';
     updateScore(); // Aggiorna visualizzazione punteggio
     hideVictoryMessage();
-    createBoard();
+    createBoard(true); // Mostra simboli per 5 secondi all'avvio
     renderHighscores(); // Mostra la classifica all'avvio
 }
 
