@@ -164,6 +164,41 @@ body {
     transform: scale(1.06);
 }
 
+#audio-toggle-btn {
+    position: absolute;
+    top: 18px;
+    left: 250px;
+    z-index: 10;
+    background: #e60012;
+    border: 3px solid #ffd700;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 2px 8px #000a, 0 0 0 4px #ffd700 inset;
+}
+
+#audio-toggle-btn:hover {
+    background: #e60012;
+    border-color: #e60012;
+    transform: scale(1.06);
+}
+
+#audio-toggle-btn svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#audio-on-icon {
+    /* Mostra di default */
+    display: inline-block;
+}
+
+#audio-off-icon {
+    /* Nascondi di default */
+    display: none;
+}
+
 #highscores-container {
     margin-left: 40px;
     background: #111;

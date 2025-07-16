@@ -10,6 +10,18 @@
 </head>
 
 <body>
+    <button id="audio-toggle-btn" title="Attiva/Disattiva audio">
+        <!-- Icona SVG audio ON -->
+        <svg id="audio-on-icon" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#ffe600"
+                d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-4.5-4.5v9a4.5 4.5 0 0 0 4.5-4.5zm2.5 0a7 7 0 0 0-7-7v2a5 5 0 0 1 5 5 5 5 0 0 1-5 5v2a7 7 0 0 0 7-7z" />
+        </svg>
+        <!-- Icona SVG audio OFF (nascosta di default) -->
+        <svg id="audio-off-icon" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#ffe600"
+                d="M16.5 12a4.5 4.5 0 0 1-4.5 4.5V19l-5-5H3v-6h4l5-5v2.5a4.5 4.5 0 0 1 4.5 4.5zm3.5 0c0-1.61-.51-3.1-1.38-4.32l-1.42 1.42A5.98 5.98 0 0 1 20 12c0 1.3-.41 2.5-1.12 3.48l1.42 1.42A7.98 7.98 0 0 0 20 12zm-16.19-7.19l16.97 16.97-1.41 1.41-2.54-2.54C15.13 21.1 13.13 22 11 22c-5.52 0-10-4.48-10-10 0-2.13.9-4.13 2.32-5.66L1.41 3.41 2.83 2l16.97 16.97z" />
+        </svg>
+    </button>
     <button id="reset-score-btn">Reset</button>
     <div id="score-counter">Punteggio:0</div>
     <div id="error-counter">Errori:0</div>

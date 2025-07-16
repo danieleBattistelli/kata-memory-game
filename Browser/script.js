@@ -27,6 +27,7 @@ let lockBoard = false;
 let errorCount = 0;
 let matchedPairs = 0;
 let score = 0;
+let audioMuted = false;
 
 
 
@@ -41,7 +42,10 @@ const highscoresList = document.getElementById('highscores-list');
 const HIGHSCORES_KEY = 'memoryGameHighscores';
 const MAX_HIGHSCORES = 10;
 const resetHighscoresBtn = document.getElementById('reset-highscores-btn');
-const victoryMessage = document.getElementById('victory-message'); // <--- AGGIUNGI QUESTA RIGA
+const victoryMessage = document.getElementById('victory-message');
+const audioToggleBtn = document.getElementById('audio-toggle-btn');
+const audioOnIcon = document.getElementById('audio-on-icon');
+const audioOffIcon = document.getElementById('audio-off-icon');
 
 // Mappa simboli -> suoni (assicurati che i file audio esistano nella cartella 'sounds')
 const symbolSounds = {
@@ -234,6 +238,28 @@ function renderHighscores() {
     }
 }
 
+// Funzione per aggiornare lo stato audio e l'icona
+function setAudioMuted(muted) {
+    audioMuted = muted;
+    // Muta tutti gli oggetti audio
+    Object.values(audioObjects).forEach(audio => audio.muted = muted);
+    victoryAudio.muted = muted;
+    errorAudio.muted = muted;
+    // Aggiorna icona
+    if (muted) {
+        audioOnIcon.style.display = 'none';
+        audioOffIcon.style.display = '';
+    } else {
+        audioOnIcon.style.display = '';
+        audioOffIcon.style.display = 'none';
+    }
+}
+
+// Gestione click bottone audio
+audioToggleBtn.addEventListener('click', () => {
+    setAudioMuted(!audioMuted);
+});
+
 // Gestione reset punteggio
 resetScoreBtn.addEventListener('click', () => {
     score = 0;
@@ -268,4 +294,7 @@ victoryMessage.addEventListener('click', () => {
 });
 
 // Avvia il gioco al caricamento della pagina
-window.onload = initGame;
+window.onload = () => {
+    setAudioMuted(false); // audio attivo di default
+    initGame();
+};
